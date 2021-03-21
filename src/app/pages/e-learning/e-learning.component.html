@@ -1,0 +1,87 @@
+
+<!-- <div class="sub-head1"></div> -->
+<div class="full-layout">
+<div class="sub-head2">
+  <div class="sub2-aln">
+    <div fxLayout="row">
+      <!-- <div *ngFor='let in of ["Tamil","English"];' (click)="handleMedium(in)"><span class="medium-aln" [ngClass]="{'medium-highlight': SelectedMedium === in}">{{in}} Medium</span><span class="class-span"></span></div> -->
+      <div *ngFor='let in of mediumList;' (click)="handleMedium(in.value)"><span class="medium-aln" [ngClass]="{'medium-highlight': SelectedMedium === in.value}">{{in.label}} Medium</span><span class="class-span"></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="sub-head3 ">
+  <div class="sub3-aln">
+    <div fxLayout="row">
+      <!-- <div *ngFor='let in of [1,2,3,4,5,6,7,8,9,10,11,12];let i = index' (click)="handleClass(i)"><span class="class-aln" [ngClass]="{'class-highlight': SelectedClass === i+1}">Class {{i+1}}</span><span class="class-span"></span></div> -->
+      <div *ngFor='let in of classList;let i = index' (click)="handleClass(i)"><span class="class-aln" [ngClass]="{'class-highlight': SelectedClass === in.value}">{{in.label}}</span><span class="class-span"></span></div>
+    </div>
+  </div>
+</div>
+<div *ngIf="isTermShown" class="sub-head2">
+  <div class="sub4-aln">
+    <div fxLayout="row">
+      <div *ngFor='let in of termList;' (click)="handleTerm(in.value)"><span class="term-aln" [ngClass]="{'term-highlight': SelectedTerm === in.value}">{{in.label}}</span><span class="class-span"></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="text-head">
+  <!-- <label>Textbooks for Class {{classList[SelectedClass-1]['label']}} <span *ngIf="SelectedMedium"> - {{SelectedMedium}} Medium</span></label> -->
+  <span *ngIf="routePath == 'storybook'; else rp"><label>Storybook <span *ngIf="SelectedClass; else labelelse">for Level {{SelectedClass}} </span><ng-template #labelelse> for All Level</ng-template><span *ngIf="SelectedMedium"> - {{SelectedMedium}} Medium</span> </label></span>
+  <ng-template #rp><label>Textbooks for Class {{SelectedClass}} <span *ngIf="isTermShown && SelectedTerm"> ( Term {{SelectedTerm}} ) </span> <span *ngIf="SelectedMedium"> - {{SelectedMedium}} Medium</span> </label></ng-template>
+</div>
+<div *ngIf="!loadDetails; else elseBlock"><span class="body-container">Loading...</span> </div>
+<ng-template #elseBlock>
+  <div *ngIf="(mappedSubjectList.length > 0) && loadDetails; else elB">
+    <div *ngFor="let dsl of mappedSubjectList">
+      <div  class="sub-text"><label class="sub-text-clr">{{dsl.label}} <span *ngIf="dsl.details.length > 0">- {{dsl.details.length}}</span></label></div>
+      <div *ngIf="dsl.details.length > 0; else eB">
+          <p-carousel [value]="dsl.details" [numVisible]="4" [numScroll]="1" [responsiveOptions]="responsiveOptions">
+            <ng-template let-card pTemplate="item">
+              <div class="carousel-aln">
+                <p-card>  
+                  <div fxLayout="row">
+                    <div  fxFlex="25">
+                      <img [src]="card.LocalImage" class="carousel-img"/>
+                      <!-- <img src="assets/img/mark/images.jpeg" class="carousel-img"/> -->
+                    </div>
+                    <div  fxFlex="55">
+                      <label class="p-card">{{card.Label}}<span *ngIf="card.Chapter">({{card.Chapter}})</span></label>
+                      <div *ngIf="card.UnitName" class="small-font">Unit : {{card.UnitName}}</div>
+                      <div *ngIf="card.BookChapterName" class="small-font">Chapter : {{card.BookChapterName}}</div>
+                      <div *ngIf="card.BookSubchapterName" class="small-font">SubChapter : {{card.BookSubchapterName}}</div> 
+                      <!-- <div class="small-font">{{card.LocalImage}}</div> -->
+                    </div>
+                    <div  fxFlex="20" class="view-aln" (click)="isVideoLink(card)" *ngIf="routePath == 'textbook';">
+                      <div >view</div>
+                    </div>
+                  </div>
+                </p-card>   
+              </div>
+            </ng-template>
+          </p-carousel>
+      </div>
+      <ng-template #eB><span class="class-align"></span>There is No Content.</ng-template>
+    </div>
+  </div>
+  <ng-template #elB><span class="class-align"></span>There is No Content.</ng-template>
+</ng-template>
+</div>
+
+  <p-dialog  [(visible)]="isVideo"
+  [modal]="true" 
+  [responsive]="true" 
+  [draggable]="false"  
+  [blockScroll]="true" 
+  [maximizable]="false" 
+  [contentStyle]="{'max-width':'1000px','overflow-y': 'auto'}">
+
+    <p-header>Video Playing - {{videoLabel}} </p-header>
+    <div>
+      <iframe class="img-fluid" height="260" style="height:260px!important" [src]="Url" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-times" label="Close" (click)="close()"></button>
+    </p-footer>
+</p-dialog>

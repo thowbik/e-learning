@@ -1,0 +1,153 @@
+<div class="main-body-content flex-gap-btm">
+  <form [formGroup]="form">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid flex-gap-btm flex-gap-top">
+      <div class="ui-grid-row" [ngClass]="{'fixed-dropdown-height': !isShowVideo}">
+        <div class="col-lg-3">
+        </div>
+        <div class="col-lg-2">
+          <label>Class</label>
+          <p-dropdown [options]="classList" formControlName="classId" styleClass="select_dropdown" placeholder="Choose"
+            (onChange)="getSubjects(form.value.classId)"></p-dropdown>
+          <p-message severity="error" text="Class is required"
+            *ngIf="form.controls.classId.errors && (form.controls.classId.dirty || form.controls.classId.touched)">
+          </p-message>
+        </div>
+        <div class="ui-grid-col-2">
+          <label>Medium</label>
+          <p-dropdown [options]="mediumList" formControlName="mediumId" styleClass="select_dropdown"
+            placeholder="Choose"></p-dropdown>
+          <p-message severity="error" text="Medium is required"
+            *ngIf="form.controls.mediumId.errors && (form.controls.mediumId.dirty || form.controls.mediumId.touched)">
+          </p-message>
+        </div>
+        <div class="ui-grid-col-2">
+          <label>Subject</label>
+          <p-dropdown [options]="subjectList" formControlName="subjectId" styleClass="select_dropdown"
+            placeholder="Choose"></p-dropdown>
+          <p-message severity="error" text="Subject is required"
+            *ngIf="form.controls.subjectId.errors && (form.controls.subjectId.dirty || form.controls.subjectId.touched)">
+          </p-message>
+        </div>
+        <div class="ui-grid-col-3">
+          <button pButton type="submit" label="Search" class="ui-button-raised ui-button-rounded button-gap-top"
+            (click)="getData()"></button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+  <!-- <div *ngIf="!isShowVideo" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px"> -->
+    <div *ngIf="!isShowVideo" class="row" >
+    <div class="col-lg-3">
+    </div>
+    <div class="col-md-9 col-sm-12" >
+      <iframe width="490" height="315" src="https://www.youtube.com/embed/DOwXjLXvCeI" frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <span style="padding-left:25px;"></span>
+      <iframe width="490" height="315" src="https://www.youtube.com/embed/1PPIQyRPIA0" frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+   
+   
+    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/6JzwqAbjC3c" frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+  </div>
+  <div *ngIf="isShowVideo">
+
+    <!-- 
+  <p-card> -->
+
+
+    <div class="row">
+      <div class="col-md-3">
+        <div *ngFor="let item of data;let i =index">
+          <p-card>
+            <label class="url hyper-link" (click)="getSelectedChapter(item.chapter)"><span
+                style="margin-right: 10px;">{{i+1}}.</span>{{item.chapter_trimmed}}</label>
+          </p-card>
+        </div>
+      </div>
+      <div class="col-md-9 flex-center">
+        <div *ngIf="videoPdfData.length > 0" style="margin-bottom: 20px;">
+          <p-card >
+            <h3>Learning Resources</h3>
+          </p-card>
+        </div>
+        <div *ngFor="let item of videoPdfData;let i =index" class="flex-gap-btm">
+          <div>
+            <h4 class="title-text"><span style="margin-right: 10px;">{{i+1}}</span> {{item.name}}</h4>
+          </div>
+          <div>
+            <video controls (click)="toggleVideo()" class="video-player" #videoPlayer>
+              <source [src]="item.video_url" />
+              Browser not supported
+            </video>
+          </div>
+        </div>
+        <div *ngIf="videoPdfData.length > 0" style="margin-bottom: 20px;">
+          <p-card>
+            <h3>Practice Resources</h3>
+          </p-card>
+          <label style="text-align: center;margin-top: 20px;font-weight: bold;">No Data Found</label>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <!-- <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="30px">
+      <div fxLayout="column" fxFlex="25">
+        <div *ngFor="let item of data;let i =index">
+          <p-card>
+            <label class="url hyper-link" (click)="getSelectedChapter(item.chapter)"><span
+                style="margin-right: 10px;">{{i+1}}.</span>{{item.chapter}}</label>
+          </p-card>
+        </div>
+      </div>
+
+      <div fxFlex="75" class="flex-center">
+        <div *ngIf="videoPdfData.length > 0" style="margin-bottom: 20px;">
+          <p-card>
+            <h3>Learning Resources</h3>
+          </p-card>
+        </div>
+
+        <div *ngFor="let item of videoPdfData;let i =index" class="flex-gap-btm">
+          <div>
+            <h4 class="title-text"><span style="margin-right: 10px;">{{i+1}}</span> {{item.name}}</h4>
+          </div>
+          <div>
+            <video controls (click)="toggleVideo()" class="video-player" #videoPlayer>
+              <source [src]="item.video_url" />
+              Browser not supported
+            </video>
+          </div>
+
+
+        </div>
+        <div *ngIf="videoPdfData.length > 0" style="margin-bottom: 20px;">
+          <p-card>
+            <h3>Practice Resources</h3>
+          </p-card>
+          <label style="text-align: end;margin-top: 20px;font-weight: bold;">No Data Found</label>
+        </div> -->
+        <!-- <ngx-extended-pdf-viewer src="https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf" useBrowserLocale="true" height="80vh"></ngx-extended-pdf-viewer> -->
+        <!-- <ngx-extended-pdf-viewer src="http://www.africau.edu/images/default/sample.pdf" useBrowserLocale="true" height="80vh"></ngx-extended-pdf-viewer> -->
+      <!-- </div>
+
+    </div> -->
+    <!-- <div class="row flex-center" fxFlex="75" *ngIf="videoPdfData.length > 0"  style="margin-bottom: 20px;">
+     
+      <p-card><h3>Practice Resources</h3></p-card>
+  
+  </div> -->
+    <!-- </p-card> -->
+  </div>
+  <div *ngIf="isNoData">
+    <label style="text-align: center;">No Data Found</label>
+  </div>
+
+</div>

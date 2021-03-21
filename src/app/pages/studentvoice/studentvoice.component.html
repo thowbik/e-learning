@@ -1,0 +1,220 @@
+<section class="team" id="team">
+
+    <div class="container  py-lg-3">
+        <!--   
+        <h3 class="tittle text-center font-weight-bold cus-heading" style="color:#ff2496">e-Learning</h3> -->
+        <form [formGroup]="form">
+          <div class="outer-layout">
+            <div>
+           
+<!-- <h5 class="reg-title text-center padding-top-p1">Student Voice</h5> -->
+        </div>
+        <div class="row flex-row-center" *ngIf="pageIndex != 6">
+            <!-- <img *ngIf="userType == 'Teacher' " src="../../../assets/img/image1.jpg" class="img-h text-center"/>
+            <img *ngIf="userType == 'Student' " src="../../../assets/img/studentvoice.png" class="img-h text-center"/> -->
+            <img src="../../../assets/img/studentvoice.png" class="img-h text-center"/>
+                    </div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <div class="inner-layout">
+
+                <div *ngIf="pageIndex == 1">
+                    <div fxLayout="column" fxLayoutAlign="space-around center">
+                        <div class="w-50">
+
+                        
+                        <label class="lbl-search text-center w-100">
+                            Choose Language
+                         </label>
+                         <p-dropdown [options]="language"  styleClass="feedbackdropdown" formControlName="lang_id"  placeholder="Choose"
+                         ></p-dropdown>
+                       
+                            <p-message severity="error" text="Language is required"
+                            *ngIf="form.controls.lang_id.errors && (submitted || form.controls.lang_id.dirty || form.controls.lang_id.touched)">
+                        </p-message>
+                       
+                   
+                    </div>
+                </div>
+                </div>
+     
+                    <div *ngIf="pageIndex == 2">
+                        <div fxLayout="column" fxLayoutAlign="space-around center">
+                            <div class="w-50">
+                        <label class="lbl-search text-center w-100" *ngIf="form.value.lang_id == '1'">
+                            நான் ஒரு  மாணவர் / ஆசிரியர் 
+                        </label>
+                        <label class="lbl-search text-center w-100" *ngIf="form.value.lang_id == '2'">
+                            I am a
+                        </label>
+                        <p-dropdown [options]="userTypes"  styleClass="feedbackdropdown" (onChange)="getUserType(form.value.user_type_id)" formControlName="user_type_id"  placeholder="Choose"
+                        ></p-dropdown>
+                        <div *ngIf="form.value.lang_id == '1'">
+                            <p-message severity="error" text="
+                            பயனர் வகை தேவை"
+                            *ngIf="form.controls.user_type_id.errors && (submitted || form.controls.user_type_id.dirty || form.controls.user_type_id.touched)">
+                        </p-message>
+                        </div>
+                        <div *ngIf="form.value.lang_id == '2'">
+                            <p-message severity="error" text="User Type is required"
+                            *ngIf="form.controls.user_type_id.errors && (submitted || form.controls.user_type_id.dirty || form.controls.user_type_id.touched)">
+                        </p-message>
+                        </div>
+                       
+                    </div>
+                        </div>
+                    </div>
+                    <div *ngIf="pageIndex == 3">
+                        <div *ngIf="form.value.lang_id == '1'">
+                            <p class="text-center flex-gap-bottom line-h-25 text-quotes" *ngIf="userType == 'Student' ">அருமை! <br>மாணவர்களின் குரல் கேட்பதை நாங்கள் மிகவும் விரும்புகிறோம்!<br> உங்களது மாணவர் அடையாள எண் என்ன? <br> (உங்களுக்கு வழங்கப்பட்ட QR  code  கொண்ட அடையாள அட்டையில் இருக்கும்)</p>
+                            <p class="text-center flex-gap-bottom line-h-25 text-quotes" *ngIf="userType == 'Teacher' ">சிறப்பு! <br>ஆசிரியரின் கருத்துக்கள் மாணவரின் கற்றலை நிச்சயம் மேம்படுத்தும்!<br> தாங்கள் கருத்துக்கள் அளிக்க முன்வந்துள்ளதை வரவேற்கிறோம்.<br> தங்களது ஆசிரியர் அடையாள எண் என்ன?  <br>(உங்களுடைய 8 இலக்க EMIS எண்)</p>
+                        </div>
+                        <div *ngIf="form.value.lang_id == '2'">
+                            <p class="text-center flex-gap-bottom line-h-25 text-quotes" *ngIf="userType == 'Student' ">Wonderful! <br>We love to hear from students.<br> Please tell us your Student ID<br> (It will be in your Student ID card with QR code)</p>
+                            <p class="text-center flex-gap-bottom line-h-25 text-quotes" *ngIf="userType == 'Teacher' ">Great! <br>Teacher inputs can help students learn better.<br> We appreciate you coming forward to talk to us.<br> Please tell us your Teacher ID <br>(It is your 8 digit Teacher ID in EMIS)</p>
+                        </div>
+                        <div fxLayout="column" fxLayoutAlign="space-around center">
+                            <div class="w-50">
+                        <label class="lbl-search text-center w-100" *ngIf="form.value.lang_id == '1'">
+                            <span *ngIf="userType == 'Student'">என் மாணவர்  அடையாள எண் (<span class="instr-notes">எனது அடையாள அட்டையில் உள்ளவாறு </span>)</span>
+                            <span *ngIf="userType == 'Teacher'">எனது ஆசிரியர் அடையாள எண் ( <span class="instr-notes">8 இலக்க EMIS எண்</span>)</span></label>
+                            <label class="lbl-search text-center w-100" *ngIf="form.value.lang_id == '2'">
+                                My {{userType}} ID is <br>
+                                (<span *ngIf="userType == 'Student' " class="instr-notes">as in my ID Card</span><span *ngIf="userType == 'Teacher' " class="instr-notes">Eight digit Teacher ID in EMIS</span>)</label>
+                        <input type="text" *ngIf="userType == 'Student' " pKeyFilter="pnum" maxlength="18" class="form-control" formControlName="user_id">
+                        <input type="text" *ngIf="userType == 'Teacher' " pKeyFilter="pnum" maxlength="8" class="form-control" formControlName="user_id">
+                        <div *ngIf="form.value.lang_id == '1'">
+                            <p-message severity="error" text="{{userTypeTamil}} எண் தேவை"
+                            *ngIf="form.controls.user_id.errors && (submitted || form.controls.user_id.dirty || form.controls.user_id.touched)">
+                        </p-message>
+                        </div>
+                        <div *ngIf="form.value.lang_id == '2'">
+                            <p-message severity="error" text="{{userType}} Id is required"
+                            *ngIf="form.controls.user_id.errors && (submitted || form.controls.user_id.dirty || form.controls.user_id.touched)">
+                        </p-message>
+                        </div>
+                        
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="pageIndex == 4">
+                        <div *ngIf="form.value.lang_id == '1'">
+                            <p class="text-center flex-gap-bottom line-h-25 text-quotes">வணக்கம் !  <span class="txt-name">{{name}} !</span><br> தாங்கள் எங்களுடன் என்ன பகிர விரும்புகிறீர்கள்? </p>
+                            
+                        </div>
+                        <div *ngIf="form.value.lang_id == '2'">
+                            <p class="text-center flex-gap-bottom line-h-25 text-quotes" *ngIf="userType == 'Student' ">Hi <span class="txt-name">{{name}} !</span><br> What do you want to tell us about?</p>
+                            <p class="text-center flex-gap-bottom line-h-25 text-quotes" *ngIf="userType == 'Teacher' ">Vanakkam <span class="txt-name">{{name}}</span><br> What do you want to tell us about?</p>
+                        </div>
+                        <div fxLayout="column" fxLayoutAlign="space-around center">
+                            <div class="w-50">
+                        <label class="lbl-search text-center w-100"  *ngIf="form.value.lang_id == '1'">
+                            நான்
+                        </label>
+                        <label class="lbl-search text-center w-100"  *ngIf="form.value.lang_id == '2'">
+                            I want to
+                        </label>
+                        <p-dropdown *ngIf="form.value.lang_id == '1'" [options]="feedbackTypesTamil" formControlName="feedback_type" (onChange)="getFeedbackType(form.value.feedback_type)" styleClass="feedbackdropdown" placeholder="Choose"
+                        ></p-dropdown>
+                        <p-dropdown *ngIf="form.value.lang_id == '2'" [options]="feedbackTypes" formControlName="feedback_type" (onChange)="getFeedbackType(form.value.feedback_type)" styleClass="feedbackdropdown" placeholder="Choose"
+                        ></p-dropdown>
+                        <div *ngIf="form.value.lang_id == '1'">
+                            <p-message severity="error" text="கருத்து வகை தேவை"
+                            *ngIf="form.controls.feedback_type.errors && (submitted || form.controls.feedback_type.dirty || form.controls.feedback_type.touched)">
+                        </p-message>
+                        </div>
+                        <div *ngIf="form.value.lang_id == '2'">
+                            <p-message severity="error" text="Feedback type is required"
+                            *ngIf="form.controls.feedback_type.errors && (submitted || form.controls.feedback_type.dirty || form.controls.feedback_type.touched)">
+                        </p-message>
+                        </div>
+                    
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="pageIndex == 5">
+                        <div fxLayout="column" fxLayoutAlign="space-around center">
+                            <div class="w-50">
+                        <label class="lbl-search text-center w-100" *ngIf="form.value.lang_id == '1'">
+                            எனது கருத்து / கேள்வி
+                        </label>
+                        <label class="lbl-search text-center w-100" *ngIf="form.value.lang_id == '2'">
+                            My Feedback / Question is
+                        </label>
+                       
+                        <textarea pInputTextarea formControlName="feedback" class="form-control" maxlength="500"></textarea>
+                        <!-- <input type="text" pInputText class="form-control" formControlName="feedback" > -->
+                        <p-message severity="error" text="Feedback Question is required"
+                        *ngIf="form.controls.feedback.errors && (submitted || form.controls.feedback.dirty || form.controls.feedback.touched)">
+                    </p-message>
+               
+                        <!-- <a href="#" class="btn button-style mt-md-5 mt-4 search-btn">Search</a> -->
+                        <button pButton type="submit" label="Submit" class="button-style search-btn save-feedback-btn"
+                            (click)="save()"></button>
+                
+                    </div>
+                        </div>
+                    </div>
+            <div class="row flex-end-button" *ngIf="pageIndex == 6">
+                <div class="row flex-row-center w-100">
+                    <img *ngIf="feedbackType == 1 " src="../../../assets/img/image1.jpg" class="img-h text-center"/>
+                    <img *ngIf="feedbackType != 1 " src="../../../assets/img/image2.png" class="img-h text-center"/>
+                            </div>
+                <div class="row col-lg-12">
+                    <div *ngIf="feedbackType == 1"  class="row flex-g-30 text-center">
+                        <span  class="text-quotes line-h-25 text-center w-100">Albert Einstein said,<span class="txt-name">"The most important thing is to never stop questioning"</span> .
+                    </span>
+                    <p class="text-center w-100"> Thank you for your question! <br> Keep asking more questions and continue learning!></p>
+                   
+                    </div>
+                <div *ngIf="feedbackType != 1" class="row flex-g-30 text-center">
+                    <span class="text-quotes line-h-25">APJ Abdul Kalam said, <span class="txt-name">"Teachers are the backbone of any country, the pillar upon which all aspirations are converted into realities."</span> </span> <br>
+                    <p class="text-center w-100">Thank you for your input! <br>We appreciate you taking time to write to us!</p>
+     
+                </div>
+    
+                </div>
+                </div>
+        </div>
+        </div>
+       
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" class="flex-gap-top-3" *ngIf="pageIndex != 6">
+         
+            <button pButton type="button" label="Previous" class="ui-button-rounded ui-button-warning" (click)="prev()" [disabled]="pageIndex== 1"></button>
+            <button pButton type="button" label="Next" class="ui-button-rounded ui-button-success"  [disabled]="pageIndex== 5" (click)="next()"></button>
+      
+    </div>
+    </div>  
+        </form>
+        <p-dialog [(visible)]="showText"  [modal]="true" 
+        [responsive]="true" 
+        [style]="{width:'70%'}" 
+         (onHide)="close()">
+            <p-header>
+         Success
+            </p-header>
+            <div class="row col-lg-12 flex-gap-bottom">
+            </div>
+            <div class="row col-lg-12">
+                <div *ngIf="form.value.feedback_type == '1' "  class="row flex-g-30">
+                    <span  class="text-quotes line-h-25 text-center w-100">Albert Einstein said,<span class="txt-name">"The most important thing is to never stop questioning"</span> .
+                </span>
+                <p class="text-center w-100"> Thank you for your question! <br> Keep asking more questions and continue learning!></p>
+               
+                </div>
+            <div *ngIf="form.value.feedback_type != '1'" class="row flex-g-30">
+                <span class="text-quotes line-h-25">APJ Abdul Kalam said, <span class="txt-name">"Teachers are the backbone of any country, the pillar upon which all aspirations are converted into realities."</span> </span> <br>
+                <p class="text-center w-100">Thank you for your input! <br>We appreciate you taking time to write to us!</p>
+ 
+            </div>
+
+            </div>
+         
+            <p-footer>
+                <button type="button" pButton icon="pi pi-times" label="Close" (click)="close()"></button>
+            </p-footer>
+        </p-dialog>
+        <p-toast [style]="{marginTop: '20px'}"></p-toast>
+
+
+    </div>
+</section>

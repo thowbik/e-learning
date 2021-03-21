@@ -1,0 +1,98 @@
+<div class="main-body-content" style="padding-left: 5%;
+  padding-right: 5%;background-color: #5e0b65;">
+    <div style="color:white;font-weight: 500;font-size: 17px;padding:5px">
+        <label class="text-center w-100">Veetupalli Class 12 E-Content</label>
+    </div>
+    <p-accordion *ngFor="let item of subjects" [multiple]="false">
+        <p-accordionTab header="{{item.Sub}}" [selected]="false" (click)="onSubjectData(item.Sub)">
+            <p-table #dt [columns]="selectedColumns1" [value]="data" [paginator]="true" [rows]="5"
+                [resizableColumns]="true" [lazy]="false" [globalFilterFields]="['Unit','Episode','Page','Label']">
+                <ng-template pTemplate="caption">
+                    <div class="row chip" style="color:white">
+                        <span>{{totalSub}}</span>
+                        Total Videos
+                    </div>
+                    <!-- <div class="row  header flex-row-center">
+                        <div class="col-lg-9 p-1">
+                        </div>
+                        <div class="col-sm-3 text-right">
+                            <input pInputText class="form-control" type="text"
+                                (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Filter" />
+                        </div> 
+                    </div> -->
+                </ng-template>
+                <ng-template pTemplate="header" let-Datas>
+                    <tr class="text-center">
+                        <th style="width: 6em;">#</th>
+                        <th>Unit</th>
+                        <th>Part</th>
+                        <th>Page</th>
+                        <!-- <th style="width: 30em;">File Name</th> -->
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-resource let-i="rowIndex">
+                    <tr>
+                        <td class="sno-header-layout" class="text-center">{{i+1}}</td>
+                        <td class="text-center">{{resource.Unit}}</td>
+                        <td class="text-center">{{resource.Episode}}</td>
+                        <td class="text-center">{{resource.Page}}</td>
+                        <!-- <td>{{resource.Label}}</td> -->
+                        <td style="text-align:center">
+                            <button pButton type="button" icon="pi pi-play" label="Play" class="pad-aln1"
+                                (click)="playVideo(resource.Label)"></button>
+                            <button pButton type="button" icon="pi pi-download" label="Download" class="pad-aln"
+                                (click)="downloadVideo(resource.Label)"></button>
+                        </td>
+                    <tr>
+                </ng-template>
+
+            </p-table>
+        </p-accordionTab>
+    </p-accordion>
+    <p-dialog [(visible)]="isVideo" [modal]="true" [responsive]="true" [draggable]="true" [blockScroll]="true"
+        [maximizable]="false" [contentStyle]="{'max-width':'1000px','overflow-y': 'auto'}">
+
+        <p-header>Video Playing - {{videoLabel}} </p-header>
+        <div>
+            <div><iframe class="youtube-thumb-layout" height="260" width="500"
+                    style="height:260px!important;width: 500px !important;" [src]="videoUrl" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe></div>
+        </div>
+        <p-footer>
+            <button type="button" pButton icon="pi pi-times" label="Close" (click)="close()"></button>
+        </p-footer>
+    </p-dialog>
+</div>
+<!-- 
+<h5>Programmatic</h5>
+<div style="margin-bottom: 1rem">
+    <button pButton type="button" label="Expand all" (click)="expandAll()" style="margin-right: .5rem"></button>
+    <button pButton type="button" label="Collapse all" (click)="collapseAll()"></button>
+</div>
+<p-tree [value]="tree" ></p-tree>
+
+
+<p-tree [value]="tree">
+    <ng-template let-node  pTemplate="picture">
+        <a href="{{node.label}}" target="_blank"><span class="badge badge-success">Download</span></a>
+    </ng-template>
+    <ng-template let-node  pTemplate="default">
+        <input [(ngModel)]="node.label" type="text" style="width:100%">
+    </ng-template>
+</p-tree> -->
+
+
+
+<!-- <p-tree [value]="nodes" [styleClass]="'my-tree'">
+    <ng-template let-node pTemplate="url">
+       
+        {{node.label}}<a [href]="fileUrl" download="{{node.label}}.pdf" (click)="onDownload(node.data)" style="outline: none !important"><span class="badge badge-success" style="padding-left:5%">Download</span></a> -->
+<!-- {{node.label}}<a [href]="node.data" target="_blank" [download]="node.data"><span class="badge badge-success" style="padding-left:5%">Download</span></a> -->
+<!-- <a [href]="node.data" target="_blank"><span class="badge badge-success">Download</span></a> -->
+<!-- </ng-template>
+    <ng-template let-node pTemplate="default">
+        <b>{{node.label}}</b>
+    </ng-template>
+</p-tree> -->

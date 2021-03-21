@@ -1,0 +1,22 @@
+.sno-header-layout {
+    width: 4em !important;
+    }
+.dateTime-layout {
+    width: 8em !important; 
+}
+.desc-layout {
+    width: 30em !important;   
+}
+    .flex-center-col {
+        display: flex;
+        align-items: center;
+        place-content: center;
+        flex-direction: column;
+    }
+    .m0 {
+        margin-left: 0px;
+    }
+    .channel-img {
+    width: 120px;
+    height: 120px;
+    }

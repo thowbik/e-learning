@@ -1,0 +1,218 @@
+<div class="back-image">
+    <div style="padding-top:5%;padding-bottom:5%;margin-left:10%;margin-right:10%">
+        <p-card>
+           
+            <div *ngIf="hideVal=== 0">
+                <div style="text-align: center;font-size:18px;padding-top:1%;padding-bottom:1%;color:#990073;font-weight:500">
+                    <label>Student Details</label>
+                </div >
+            <form [formGroup]="form">
+            <div class="row" style="padding-bottom:2%;padding-left:10%;padding-right:10%">
+                <div class="col-md-4" style="text-align: center;font-weight:500">
+                    <label>Enter Register No</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" pInputText formControlName="register_id" class="form-control" >
+                    <p-message severity="error" text="Field is required"
+                    *ngIf="form.controls.register_id.errors && (submitted || form.controls.register_id.dirty || form.controls.register_id.touched)">
+                  </p-message>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-success" style="background-color: #990073;" (click)="onSubmit(hideVal)">Submit</button>   
+                </div>
+            </div>
+            </form> 
+            </div>
+            <div  *ngIf="hideVal=== 1 && hideVal1 === 0">
+                <div style="text-align: center;font-size:18px;padding-top:1%;padding-bottom:1%;color:#990073;font-weight:500">
+                    <label>Student Details</label>
+                </div >
+                <form [formGroup]="studentform">
+                    <div class="row" style="padding-bottom:2%;padding-left:20%;padding-right:20%">
+                        <div class="col-md-6" style="padding-right:10px;font-weight:500">
+                            <label>Student Name</label>
+                        </div>
+                        <div class="col-md-6" >
+                            <label class="form-control" style="border:none">{{name}}</label>
+                            <!-- <input type="text" pInputText pKeyFilter="alpha" formControlName="name" class="form-control" style="border:none" > -->
+                            <!-- <p-message severity="error" text="Field is required"
+                            *ngIf="studentform.controls.name.errors && (submitted1 || studentform.controls.name.dirty || studentform.controls.name.touched)">
+                          </p-message> -->
+                        </div>
+                    </div>
+                    <div class="row" style="padding-bottom:2%;padding-left:20%;padding-right:20%">
+                        <div class="col-md-6" style="padding-right:10px;font-weight:500">
+                            <label>Schoool Name</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-control" style="border:none">{{school_name}}</label>
+                            <!-- <input type="text" pInputText formControlName="school_name" class="form-control" style="border:none" >
+                            <p-message severity="error" text="Field is required"
+                            *ngIf="studentform.controls.school_name.errors && (submitted1 || studentform.controls.school_name.dirty || studentform.controls.school_name.touched)">
+                          </p-message> -->
+                        </div>
+                    </div>
+                    <div class="row" style="padding-bottom:2%;padding-left:20%;padding-right:20%">
+                        <div class="col-md-6" style="padding-right:10px;font-weight:500">
+                            <label>Absent Subject</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-control" style="border:none">{{subject_name}}</label>
+                            <!-- <input type="text" pInputText formControlName="subject_name" class="form-control" style="border:none" >
+                            <p-message severity="error" text="Field is required"
+                            *ngIf="studentform.controls.subject_name.errors && (submitted1 || studentform.controls.subject_name.dirty || studentform.controls.subject_name.touched)">
+                          </p-message> -->
+                        </div>
+                    </div>
+                    <div class="row" style="padding-bottom:2%;padding-left:20%;padding-right:20%">
+                        <div class="col-md-6" style="padding-right:10px;font-weight:500">
+                            <label>Exam Center</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-control" style="border:none">{{center_name}}</label>
+                            <!-- <input type="text" pInputText formControlName="center_name" class="form-control" >
+                            <p-message severity="error" text="Field is required"
+                            *ngIf="studentform.controls.center_name.errors && (submitted1 || studentform.controls.center_name.dirty || studentform.controls.center_name.touched)">
+                          </p-message> -->
+                        </div>
+                    </div>
+                    <div class="text-right save-button" style="padding-bottom:2%;padding-left:20%;padding-right:20%">
+                        <button type="submit" class="btn btn-success" style="background-color: #990073;" (click)="onConfirm()">Confirm</button>   
+                    </div>
+                   
+                </form>
+                <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+            </div>
+            <div  *ngIf="hideVal1=== 1">
+                <div style="text-align: center;font-size:18px;padding-top:1%;padding-bottom:1%;color:#990073;font-weight:500">
+                    <label>Additional Details</label>
+                </div >
+                <form [formGroup]="addtionalform">
+                    <div class="row" style="padding-bottom:2%;padding-left:20%;padding-right:20%">
+                        <div class="col-md-6" style="padding-right:10px;font-weight:500">
+                            <label>Address</label>
+                        </div>
+                        <div class="col-md-6">
+                            <textarea pInputTextarea formControlName="address" class="form-control"></textarea>
+                            <p-message severity="error" text="Field is required"
+                            *ngIf="addtionalform.controls.address.errors && (submitted2 || addtionalform.controls.address.dirty || addtionalform.controls.address.touched)">
+                          </p-message>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-bottom:2%;padding-left:20%;padding-right:20%">
+                        <div class="col-md-6" style="padding-right:10px;font-weight:500">
+                            <label>Pincode</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" pInputText pKeyFilter="pnum" minlength="6" maxlength="6" formControlName="pincode" class="form-control" >
+                            <p-message severity="error" text="Field is required(must 6 numbers)"
+                            *ngIf="addtionalform.controls.pincode.errors && (submitted2 || addtionalform.controls.pincode.dirty || addtionalform.controls.pincode.touched)">
+                          </p-message>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-bottom:2%;padding-left:20%;padding-right:20%">
+                        <div class="col-md-6" style="padding-right:10px;font-weight:500">
+                            <label>Nearest Landmark</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" pInputText formControlName="landmark" class="form-control" >
+                            <p-message severity="error" text="Field is required"
+                            *ngIf="addtionalform.controls.landmark.errors && (submitted2 || addtionalform.controls.landmark.dirty || addtionalform.controls.landmark.touched)">
+                          </p-message>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-bottom:2%;padding-left:20%;padding-right:20%">
+                        <div class="col-md-6" style="padding-right:10px;font-weight:500">
+                            <label>District</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" pInputText formControlName="district" class="form-control" >
+                            <p-message severity="error" text="Field is required"
+                            *ngIf="addtionalform.controls.district.errors && (submitted2 || addtionalform.controls.district.dirty || addtionalform.controls.district.touched)">
+                          </p-message>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-bottom:2%;padding-left:20%;padding-right:20%">
+                        <div class="col-md-6" style="padding-right:10px;font-weight:500">
+                            <label>Mobile No1</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" pInputText pKeyFilter="pnum" minlength="10" maxlength="10" pInputText formControlName="mobile1" class="form-control" >
+                         <p-message severity="error" text="Field is required(must 10 numbers)"
+                        *ngIf="addtionalform.controls.mobile1.errors && (submitted2 || addtionalform.controls.mobile1.dirty || addtionalform.controls.mobile1.touched)">
+                      </p-message>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-bottom:2%;padding-left:20%;padding-right:20%">
+                    <div class="col-md-6" style="padding-right:10px;font-weight:500">
+                        <label>Mobile No2</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" pInputText pKeyFilter="pnum" minlength="10" maxlength="10" pInputText formControlName="mobile2" class="form-control" >
+                         <!-- <p-message severity="error" text="Field is required(must 10 numbers)"
+                        *ngIf="addtionalform.controls.mobileno.errors && (submitted2 || addtionalform.controls.mobileno.dirty || addtionalform.controls.mobileno.touched)">
+                      </p-message>    -->
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:2%;padding-left:20%;padding-right:20%">
+                    <div class="col-md-6" style="padding-right:10px;font-weight:500">
+                        <label>Mobile No3</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" pInputText pKeyFilter="pnum" minlength="10" maxlength="10" pInputText formControlName="mobile3" class="form-control" >
+                     <!-- <p-message severity="error" text="Field is required(must 10 numbers)"
+                    *ngIf="addtionalform.controls.mobileno.errors && (submitted2 || addtionalform.controls.mobileno.dirty || addtionalform.controls.mobileno.touched)">
+                  </p-message> -->
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:2%;padding-left:20%;padding-right:20%">
+                    <div class="col-md-6" style="padding-right:10px;font-weight:500">
+                        <label>Do you want to take NEET exam?</label>
+                    </div>
+                    <div class="col-md-3">
+                        <p-radioButton name="exam_yn" formControlName="exam_yn" value="1" label="YES"
+                        (click)="neetexam(addtionalform.value.exam_yn)">
+                      </p-radioButton>
+                      <p-message severity="error" text="Field is required"
+                      *ngIf="addtionalform.controls.exam_yn.errors && (submitted2 || addtionalform.controls.exam_yn.dirty || addtionalform.controls.exam_yn.touched)">
+                    </p-message>
+                    </div>
+                    <div class="col-md-3">
+                        <p-radioButton name="exam_yn" formControlName="exam_yn" value="2" label="NO"
+                        (click)="neetexam(addtionalform.value.exam_yn)">
+                      </p-radioButton>
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:2%;padding-left:20%;padding-right:20%" *ngIf="addtionalform.value.exam_yn== '1'">
+                    <div class="col-md-6" style="padding-right:10px;font-weight:500">
+                        <label>Do you want transport?</label>
+                    </div>
+                    <div class="col-md-3">
+                        <p-radioButton name="transport_yn" formControlName="transport_yn" value="1" label="YES"
+                       >
+                      </p-radioButton>
+                      <p-message severity="error" text="Field is required"
+                      *ngIf="addtionalform.controls.transport_yn.errors && (submitted2 || addtionalform.controls.transport_yn.dirty || addtionalform.controls.transport_yn.touched)">
+                    </p-message>
+                    </div>
+                    <div class="col-md-3">
+                        <p-radioButton name="transport_yn" formControlName="transport_yn" value="2" label="NO"
+                        >
+                      </p-radioButton>
+                    </div>
+                </div>
+                    <div class="text-right save-button" style="padding-bottom:2%;padding-left:20%;padding-right:20%">
+                        <button type="submit" class="btn btn-success" style="background-color: #990073;" (click)="onFinalSubmit()">Confirm</button>   
+                    </div>
+                   
+                </form>
+            </div>
+        </p-card>
+    </div>
+    
+</div>
+
+
+<p-confirmDialog [style]="{width: '50vw'}" key="positionDialog"></p-confirmDialog>
+
+

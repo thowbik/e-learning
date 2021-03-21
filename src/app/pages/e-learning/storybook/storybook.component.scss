@@ -1,0 +1,238 @@
+.video-container{
+    width: 400px;
+    height: 400px;
+}
+.flex-center {
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    place-content: start;
+    align-items: center;
+    
+}
+.flex-gap-btm {
+    margin-bottom: 60px !important;
+}
+.button-gap-top {
+    margin-top: 24px;
+}
+.hyper-link:hover {
+color: blue;
+}
+// .fixed-dropdown-height{
+//     //height: 258px;
+// }
+.video-player {
+    width: 500px;
+    height: 300px;
+}
+.title-text {
+    text-align: center;
+    margin-bottom: 15px;
+}
+.flex-row {
+    display: flex;
+}
+.flex-gap-right-2em {
+    margin-right: 2rem !important;
+}
+
+
+/*sub header style start*/
+
+.sub-head1 {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    line-height: 50px;
+    background-color:teal;
+    display: list-item;
+}
+.sub-head2 {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    line-height: 65px;
+    background-color:white;
+    display: list-item;
+}
+.sub-head3 {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    line-height: 50px;
+    background-color:#e9e9ea;
+    display: list-item;
+}
+
+.p-card {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+   // padding:6px !important;
+}
+.view-aln {
+    margin-top: auto;
+    border: 1px solid pink;
+    border-radius: 4px;
+    text-align: center;
+    background-image: linear-gradient(rgb(61, 4, 56), rgb(230, 24, 151));
+    color:white;
+    cursor: pointer;
+}
+
+
+
+.ui-dialog .ui-dialog-titlebar {
+    background-image: linear-gradient(rgb(61, 4, 56), rgb(230, 24, 151));
+}
+
+.sub2-aln {
+    font-size: 12px;
+    color:#008840;
+}
+
+.sub4-aln {
+    font-size: 12px;
+    color:rgb(230, 24, 151);
+}
+
+.sub3-aln {
+    font-size: 13px;
+    color:blue;
+}
+
+.class-aln:hover {
+    color: white;
+    background-color:blue;
+}
+.term-aln:hover {
+    color: white;
+    background-color:rgb(230, 24, 151);
+}
+.medium-aln:hover {
+    color: white;
+    background-color:#008840;
+}
+
+@media (max-width: 1024px) {
+    .sub3-aln {
+        font-size: 13px;
+        color:blue;
+        display: flex;
+        overflow: scroll;
+        white-space: nowrap;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .sub-head3 {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        line-height: 16px;
+        background-color:#e9e9ea;
+        display: list-item;
+    } 
+    .sub2-aln {
+        font-size: 12px;
+        color:#008840;
+        display: flex;
+        overflow: scroll;
+        white-space: nowrap;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .sub-head2{
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        line-height: 20px;
+        background-color:white;
+        display: list-item;
+    } 
+}
+
+.medium-aln {
+    display: initial;
+    border:1px solid green;
+    padding: 9px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.class-aln {
+  display: initial;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 27px;
+  padding: 8px 16px 8px 16px;
+}
+
+.term-aln {
+    display: initial;
+    border:1px solid rgb(230, 24, 151);
+    padding: 9px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.class-span {
+    padding-left:8px
+}
+
+.text-head {
+    padding:15px;
+    font-weight:600;
+    font-size:18px
+}
+
+.sub-text{
+    padding:15px;
+    font-weight:600;
+    font-size:18px
+}
+
+.sub-text-clr {
+    color:#024f9d
+}
+
+.carousel-aln {
+    padding:15px;
+    font-weight:600;
+    font-size:18px;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 100px;
+    border-radius: 3px;
+}
+
+.class-align{
+    padding-left:20px;
+}
+
+.class-highlight{ color: white; background-color:blue; }
+.medium-highlight{ color: white; background-color:#008840; }
+.term-highlight{ color: white; background-color:rgb(230, 24, 151); }
+.body-container{padding: 8px !important;}
+.small-font {font-size: 7px;
+}
+.full-layout {
+    min-height: 450px !important;
+}
+.pad{
+    padding:15px;
+}
+
+/*sub header style end*/

@@ -1,0 +1,59 @@
+<div class="back-image">
+  <form [formGroup]="resultform">
+    <div class="row" style="padding-top:3%;padding-bottom:3%;padding-left:5%;padding-left:5%">
+      <div class="col-md-4">
+        <p-card [style]="{width: '360px'}" styleClass="ui-card-shadow">
+          <p-header>
+            <img src="assets/img/math.gif" height="200">
+            <!-- <img src="Card" src="assets/img/mark/star.jpeg"> -->
+          </p-header>
+          <div>
+            <div formArrayName="schoolnew_schoollist_details"
+              *ngFor="let item of resultform.get('schoolnew_schoollist_details')['controls']; let i = index;">
+              <div [formGroupName]="i">
+                <p-card >
+                  <input formControlName="mathsmark" placeholder="Item name">
+              </p-card>
+              </div>
+            </div>
+          </div>
+        </p-card>
+      </div>
+      <div class="col-md-4">
+        <p-card [style]="{width: '360px'}" styleClass="ui-card-shadow">
+          <p-header>
+            <img src="Card" src="assets/img/Lcd5jrnoi (1).gif" height="200">
+          </p-header>
+          <div>
+            <div formArrayName="schoolnew_schoollist_details"
+              *ngFor="let item of resultform.get('schoolnew_schoollist_details')['controls']; let i = index;">
+              <div [formGroupName]="i">
+                <p-card >
+                  <input formControlName="mathsmark" placeholder="Item name">
+              </p-card>
+              </div>
+            </div>
+          </div>
+        </p-card>
+      </div>
+      <div class="col-md-4">
+        <p-card [style]="{width: '360px'}" styleClass="ui-card-shadow">
+          <p-header>
+            <img src="assets/img/source.gif" height="200">
+          </p-header>
+          <div>
+            <div formArrayName="schoolnew_schoollist_details"
+              *ngFor="let item of resultform.get('schoolnew_schoollist_details')['controls']; let i = index;">
+              <div [formGroupName]="i">
+                <p-card >
+                  <input formControlName="mathsmark" placeholder="Item name">
+              </p-card>
+              </div>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    </div>
+
+  </form>
+</div>

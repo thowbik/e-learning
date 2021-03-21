@@ -1,0 +1,159 @@
+<div class="team full-layout" id="team">
+
+    <div class="container  py-lg-3">
+        <!--   
+        <h3 class="tittle text-center font-weight-bold cus-heading" style="color:#ff2496">e-Learning</h3> -->
+        <form [formGroup]="form">
+            <fieldset [disabled]="isShowQuestions">
+            <div class="row ab-info second pt-lg-4 search-div">
+                <div class="col-lg-1 col-sm-6">
+
+                </div>
+                <div class="col-lg-2 col-sm-6 ">
+                    <label class="lbl-search">
+                        Student Id
+                    </label>
+                    <div>
+                        <input type="text" pKeyFilter="pnum" formControlName="student_id" class="form-control" maxlength="10">
+                        <p-message severity="error" text="Student Id is required"
+                            *ngIf="form.controls.student_id.errors && (form.controls.student_id.dirty || form.controls.student_id.touched)">
+                        </p-message>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-6 ">
+                    <label class="lbl-search">
+                        Class
+                    </label>
+                    <div>
+                        <p-dropdown [options]="classList" [disabled]="isShowQuestions" formControlName="classId" styleClass="select_dropdown"
+                            placeholder="Choose" (onChange)="getSubjects(form.value.classId)"></p-dropdown>
+                        <p-message severity="error" text="Class is required"
+                            *ngIf="form.controls.classId.errors && (form.controls.classId.dirty || form.controls.classId.touched)">
+                        </p-message>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <label class="lbl-search">
+                        Medium
+                    </label>
+                    <div>
+                        <p-dropdown [options]="mediumList" formControlName="mediumId"  [disabled]="isShowQuestions" styleClass="select_dropdown"
+                            placeholder="Choose"></p-dropdown>
+                        <p-message severity="error" text="Medium is required"
+                            *ngIf="form.controls.mediumId.errors && (form.controls.mediumId.dirty || form.controls.mediumId.touched)">
+                        </p-message>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-sm-6">
+                    <label class="lbl-search">
+                        Subject
+                    </label>
+                    <div>
+                        <p-dropdown [options]="subjectList" formControlName="subjectId" [filter]="true"
+                            styleClass="select_dropdown"  [disabled]="isShowQuestions" placeholder="Choose"></p-dropdown>
+                        <p-message severity="error" text="Subject is required"
+                            *ngIf="form.controls.subjectId.errors && (form.controls.subjectId.dirty || form.controls.subjectId.touched)">
+                        </p-message>
+                    </div>
+                </div>
+                <div class="col-lg-1 col-sm-6">
+
+                </div>
+                <div class="col-lg-2 col-sm-6 align-items-center justify-content-center">
+                    <!-- <a href="#" class="btn button-style mt-md-5 mt-4 search-btn">Search</a> -->
+                    <button pButton type="submit" label="Search" class="button-style search-btn"
+                        (click)="getQuestions()"></button>
+                </div>
+            </div>
+            </fieldset>
+        </form>
+        <p-dialog [(visible)]="testCompletion"  [modal]="true" 
+        [responsive]="true" 
+        [style]="{width:'45%'}" 
+         >
+            <p-header>
+            Confirmation
+            </p-header>
+            <div class="row col-lg-12 flex-gap-bottom flex-center">
+            <h6 class="capitalize clr-blk flex-center"><i class="pi pi-info-circle" style="font-size: 2em"></i>Congratulation</h6>
+            </div>
+            <div class="row col-lg-12 flex-center">
+                <span class="flex-center"> Test Completed Successfully</span>
+            </div>
+         
+            <p-footer>
+                <button type="button" pButton icon="pi pi-times" label="Close" (click)="close()"></button>
+            </p-footer>
+        </p-dialog>
+
+
+
+    </div>
+
+    <div class="container ab-info second pt-lg-3 search-div padding" *ngIf="isShowQuestions">
+        <form [formGroup]="questionform">
+            <div class="row ">
+                <div class="col-md-12">
+                    <div formArrayName="multipleQuestions"  class="flex-gap-bottom" *ngFor="let singleQuestion of questionform.get('multipleQuestions')['controls']; let i = index">
+                        <p-card>
+                        <div  [formGroupName]="i">
+                            <div formArrayName="questions"  class="flex-gap-bottom" *ngFor="let quiz of singleQuestion.get('questions')['controls']; let j = index">
+                                <div  [formGroupName]="j">
+                            <div class="col-lg-12 row">
+                                <span style="margin-right: 15px !important;">{{i+1}}.
+                                </span>
+                                <div style="flex-direction: column;">
+                                    <div  innerHtml="{{quiz.value.q_text}}">
+                
+                                    </div>
+                                    <div *ngIf="quiz.value.q_img">
+                                   
+                                      <img src="../../../../assets/img/{{quiz.value.q_img}}" alt="Question {{i+1}}" />
+                                    </div>
+                                   </div>
+                            </div>
+                                </div>
+                            </div>
+                            <div formArrayName="options"  class="flex-gap-bottom option-layout" *ngFor="let options of singleQuestion.get('options')['controls']; let optionIndex = index">
+                              
+                                <div  [formGroupName]="optionIndex">
+                            <div class="col-lg-12 row">
+          <span style="margin-right: 15px !important;">{{optionIndex+1 == "1" ? "A" : optionIndex+1 == "2" ? "B" :optionIndex+1 == "3" ? "C" : "D"}}.</span>
+                          <div style="flex-direction: row;display: flex;align-items: center;">
+                            <div>
+                              <p-radioButton name="choice_id_{{i}}" formControlName="choice_id" label="{{options.value.choice_text}}" value="{{optionIndex+1}}" (click)="getSelectedAnswer(options,i)"></p-radioButton>
+                            </div>
+                         
+                            <div *ngIf="options.value.choice_img">
+                   
+                              <img src="../../../../assets/img/{{options.value.choice_img}}" alt="Option {{optionIndex+1}}" />
+                            </div>
+                          </div>
+                            
+                           
+                            </div>
+                                </div>
+                            
+                              
+                              
+                              </div>
+                              <p-message severity="error" text="Answer for Question {{i+1}} is required"
+                              *ngIf="singleQuestion.controls.choice_id.errors && (singleQuestion.controls.choice_id.dirty || singleQuestion.controls.choice_id.touched)">
+                          </p-message>
+                            </div>
+                        </p-card>
+                        </div>
+                     
+                 
+                      </div>
+                </div>
+         
+            <div class="text-right save-button">
+                <button type="submit" class="btn btn-success flex-gap-right" (click)="onSave()">Save</button>
+            </div>
+        </form>
+        <p-toast [style]="{marginTop: '20px'}"></p-toast>
+    </div>
+
+</div>

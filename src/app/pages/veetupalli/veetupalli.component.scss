@@ -1,0 +1,149 @@
+.p-card {
+    padding:5px !important;
+}
+
+.btn-aln {
+    text-align: right;
+    font-size: 10px;
+    
+}
+.right {
+    float: left;
+    width: 300px;
+   // border: 3px solid #73AD21;
+    padding: 10px;
+  }
+
+  button {
+    margin-right: .5rem;
+}
+
+:host ::ng-deep .p-tree {
+    a {
+        color: #2196f3;
+    }
+
+}
+
+
+
+
+
+p-tree {
+//     width: 300px;
+// position: relative;
+outline: none;
+}
+
+:host ::ng-deep .ui-tree.my-tree {
+    width: 100%;
+  }
+  .ui-tree {
+    width: 100%;
+  }
+
+  span:focus {
+    outline: none;
+    border: 0;
+ }
+
+ .nofocus:focus {
+    outline: none;
+}
+
+.treePanelGrid tr, .treePanelGrid td {
+    border: 0px solid black !important;
+}
+.treePanelGrid td {
+    border-width: 0px;
+    border-style: solid;
+    border-color: black;
+    padding: 4px 10px;
+}
+span:focus {
+    outline: none;
+    //border: 0;
+ }
+
+ body .ui-tree .ui-tree-container .ui-treenode .ui-treenode-content:focus {
+    padding: 0;
+    border: 1px solid transparent;
+    outline: none !important;
+}
+
+.p-tree-outline {   display: none; } 
+
+.ui-treenode-content:focus {
+    display: none; 
+}
+
+body .ui-panel .ui-panel-titlebar .ui-panel-titlebar-icon {
+    color: black;
+}
+.pad-aln {
+    margin-right:0px !important;
+    background-color: red;
+    border: 1px solid red;
+}
+.pad-aln1 {
+    background-color: green;
+    border: 1px solid green;
+}
+.pad-ftr {
+    padding-right:10px;
+}
+
+.pad-aln1:hover {
+    background-color: green !important;
+    border: 1px solid green !important;
+}
+.pad-aln:hover {
+    background-color: red !important;
+    border: 1px solid red !important;
+}
+
+.pButton-focus-overlay {
+    background-color:transparent;
+}
+// body .ui-button:enabled:hover {
+//     background-color: #116fbf;
+//     color: #ffffff;
+//     border-color: #116fbf;
+// }
+body .ui-button:enabled:active {
+    background-color:none; 
+     color: #ffffff; 
+ border-color:none; 
+}
+.pButton:hover {
+    background-color:none; 
+    color: #ffffff; 
+border-color:none;
+}
+.text-center {
+    text-align: center;;
+}
+.w-100 {
+    width: 100% !important;
+}
+
+.chip {
+    display: inline-block;
+    padding: 0 25px;
+    height: 45px;
+    font-size: 16px;
+    line-height: 45px;
+    border-radius: 25px;
+    background-color:tomato;
+    
+  }
+  
+  .chip span {
+    float: left;
+    margin: 0 10px 0 -25px;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    background-color: green;
+    
+  }

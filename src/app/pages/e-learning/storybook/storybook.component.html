@@ -1,0 +1,62 @@
+
+<div class="full-layout">
+    <div class="sub-head2">
+      <div class="sub2-aln">
+        <div fxLayout="row">
+          <div *ngFor='let in of mediumList;' (click)="handleMedium(in.value)"><span class="medium-aln" [ngClass]="{'medium-highlight': SelectedMedium === in.value}">{{in.label}} Medium</span><span class="class-span"></span></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="sub-head3 ">
+      <div class="sub3-aln">
+        <div fxLayout="row">
+          <div *ngFor='let in of classList;let i = index' (click)="handleClass(i)"><span class="class-aln" [ngClass]="{'class-highlight': SelectedClass === in.value}">{{in.label}}</span><span class="class-span"></span></div>
+        </div>
+      </div>
+    </div>
+    <div  class="sub-text"><label class="sub-text-clr">StoryBook - Level {{SelectedClass}} </label></div>
+    <div *ngIf="!loadDetails; else elseBlock"><span class="body-container">Loading...</span> </div>
+    <ng-template #elseBlock>
+        <div *ngIf="mappedSubjectList.length > 0; else eB">
+                <div class="row">
+                  <div class="col-md-4" *ngFor="let dsl of mappedSubjectList">
+                    <div class="carousel-aln">
+                    <p-card>  
+                        <div fxLayout="row">
+                            <!-- <iframe class="img-fluid" height="290" style="height:290px!important" [src]="dsl.Url" frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
+                            <div  fxFlex="25">
+                              <img [src]="dsl.LocalImage" class="carousel-img"/>
+                            </div>
+                            <div  fxFlex="55">
+                              <label class="p-card">{{dsl.Label}}</label>
+                            </div>
+                            <div  fxFlex="20" class="view-aln" (click)="isStyBkLink(dsl)">
+                              <div>view</div>
+                            </div>
+                          </div>
+                    </p-card>   
+                  </div>
+                </div>
+              </div>
+        </div>
+        <ng-template #eB><span class="class-align"></span>There is No Content.</ng-template>
+    </ng-template>
+    </div>
+    <p-dialog  [(visible)]="isVideo"
+      [modal]="true" 
+      [responsive]="true" 
+      [draggable]="false"  
+      [blockScroll]="true" 
+      [maximizable]="false" 
+      [contentStyle]="{'max-height':'290px','max-width':'1000px','overflow-y': 'auto'}">
+    
+        <p-header>{{videoLabel}} </p-header>
+        <div>
+          <iframe  class="img-fluid" height="290" style="height:290px!important" [src]="Url" frameborder="0"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+        <p-footer>
+            <button type="button" pButton icon="pi pi-times" label="Close" (click)="close()"></button>
+        </p-footer>
+    </p-dialog>
+    
